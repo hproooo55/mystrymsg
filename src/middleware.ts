@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getToken } from 'next-auth/jwt';
-const jwt = require('jsonwebtoken')
 export { default } from 'next-auth/middleware';
 
 export const config = {

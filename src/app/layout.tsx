@@ -5,7 +5,6 @@ import "./globals.css";
 import AuthProvider from "@/context/AuthProvider";
 import { Toaster } from "@/components/ui/toaster"
 import Navbar from "@/components/Navbar";
-import { useState } from "react";
 
 
 const geistSans = Geist({
@@ -32,11 +31,11 @@ export default function RootLayout({
   let modetoggle = 'dark'
   modetoggle='light'
   return (
-    <html lang="en" className="overflow-hidden">
+    <html lang="en">
       
       <AuthProvider>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} relative overflow-x-hidden antialiased h-screen w-screen relative bg-gradient-to-bl from-pink-500/50 to-purple-600/50`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Navbar/>
         {children}

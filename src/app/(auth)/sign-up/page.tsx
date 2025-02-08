@@ -1,20 +1,19 @@
 'use client'
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
-import {useDebounceCallback, useDebounceValue} from 'usehooks-ts'
+import {useDebounceCallback} from 'usehooks-ts'
 import React, { useEffect, useState } from 'react'
 import * as z from 'zod'
-import Link from 'next/link'
 import { useToast } from '@/hooks/use-toast'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { signUpSchema } from '@/schemas/signUpSchema'
 import { zodResolver } from '@hookform/resolvers/zod';
-import axios, { AxiosError, AxiosResponse } from 'axios'
+import axios, { AxiosError } from 'axios'
 import { ApiResponse } from '@/types/ApiResponse'
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Loader, Loader2 } from 'lucide-react'
+import { Loader2 } from 'lucide-react'
 
 
 

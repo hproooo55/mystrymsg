@@ -13,13 +13,13 @@ export const authOptions: NextAuthOptions = {
         email: { label: 'Email', type: 'text' },
         password: { label: 'Password', type: 'password' },
       },
-      async authorize(credentials: any): Promise<any> {
+      async authorize(credentials: Record<"email" | "password", string> | undefined): Promise<any> {
         await dbConnect();
         try {
           const user = await UserModel.findOne({
             $or: [
-              { email: credentials.identifier },
-              { username: credentials.identifier },
+              { email: credentials?.email },
+              { username: credentials?.email },
             ],
           });
           if (!user) {
@@ -27,6 +27,9 @@ export const authOptions: NextAuthOptions = {
           }
           if (!user.isVerified) {
             throw new Error('Please verify your account before logging in');
+          }
+          if (!credentials) {
+            throw new Error('Credentials are missing');
           }
           const isPasswordCorrect = await bcrypt.compare(
             credentials.password,
@@ -37,8 +40,8 @@ export const authOptions: NextAuthOptions = {
           } else {
             throw new Error('Incorrect password');
           }
-        } catch (err: any) {
-          throw new Error(err);
+        } catch (err) {
+          throw new Error(err instanceof Error ? err.message : 'An unknown error occurred');
         }
       },
     }),
@@ -56,7 +59,7 @@ export const authOptions: NextAuthOptions = {
     async session({ session, token }) {
       if (token) {
         session.user._id = token._id as string;
-        session.user.isVerified = token.isVerified;
+        session.user.isVerified = token.isVerified as boolean;
         session.user.isAcceptingMessages = token.isAcceptingMessages;
         session.user.username = token.username;
       }

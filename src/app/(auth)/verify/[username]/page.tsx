@@ -9,10 +9,8 @@ import {useForm } from 'react-hook-form'
 import axios, { AxiosError } from 'axios'
 import { ApiResponse } from '@/types/ApiResponse'
 import { FormControl, Form, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from '@/components/ui/input-otp'
-import { Code } from 'lucide-react'
 import { useDebounceCallback } from 'usehooks-ts'
 
 const VerifyAccount = () => {

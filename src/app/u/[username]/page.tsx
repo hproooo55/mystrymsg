@@ -8,7 +8,6 @@ import { Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { CardHeader, CardContent, Card } from '@/components/ui/card';
-import { useCompletion } from 'ai/react';
 import {
   Form,
   FormControl,
@@ -18,7 +17,6 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import {Textarea} from '@/components/ui/textarea'
-import { Toast } from '@/components/ui/toast';
 import * as z from 'zod';
 import { ApiResponse } from '@/types/ApiResponse';
 import Link from 'next/link';
@@ -34,11 +32,8 @@ const parseStringMessages = (messageString: string): string[] => {
   return messageString.split(specialChar);
 };
 
-const initialMessageString =
-  "What's your favorite movie?||Do you have any pets?||What's your dream job?";
 
 export default function SendMessage() {
-  const [isSuggestLoading, setIsSuggestLoading] = useState(false)
   const [messageString, setMessageString] = useState('')
   const [error, seterror] = useState<unknown>(null)
   const params = useParams<{ username: string }>();

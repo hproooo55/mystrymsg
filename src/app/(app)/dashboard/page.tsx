@@ -15,7 +15,6 @@ import { useSession } from 'next-auth/react';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { acceptMessageSchema } from '@/schemas/acceptMessageSchema';
-import { Mongoose, Types } from 'mongoose';
 
 function UserDashboard() {
   const [messages, setMessages] = useState<Message[]>([]);
