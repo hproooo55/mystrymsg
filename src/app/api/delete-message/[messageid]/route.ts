@@ -4,11 +4,9 @@ import { getServerSession } from "next-auth";
 import { User } from "next-auth";
 import { authOptions } from "../../auth/[...nextauth]/options";
 
-export async function POST(_: Request, context: { params: { messageid: string } }) {
-  const messageid = context.params.messageid;
+export async function POST(request: Request) {
   await dbConnect();
   const session = await getServerSession(authOptions);
-  const user: User = session?.user as User;
 
   if (!session || !session.user) {
     return new Response(
@@ -20,7 +18,20 @@ export async function POST(_: Request, context: { params: { messageid: string } 
     );
   }
 
-  console.log(messageid);
+  const user: User = session.user as User;
+  const url = new URL(request.url);
+  const messageid = url.pathname.split("/").pop(); // Extract messageid from URL
+
+  if (!messageid) {
+    return new Response(
+      JSON.stringify({
+        success: false,
+        message: "Message ID is required",
+      }),
+      { status: 400, headers: { "Content-Type": "application/json" } }
+    );
+  }
+
   try {
     const updatedResult = await UserModel.updateOne(
       { _id: user._id },
@@ -45,7 +56,7 @@ export async function POST(_: Request, context: { params: { messageid: string } 
       { status: 200, headers: { "Content-Type": "application/json" } }
     );
   } catch (err) {
-    console.log("Error in delete message route", err);
+    console.error("Error in delete message route", err);
     return new Response(
       JSON.stringify({
         success: false,
