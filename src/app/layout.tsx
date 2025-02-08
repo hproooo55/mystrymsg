@@ -27,9 +27,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {  
-  
-  let modetoggle = 'dark'
-  modetoggle='light'
   return (
     <html lang="en">
       

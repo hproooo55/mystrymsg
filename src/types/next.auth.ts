@@ -22,7 +22,7 @@ declare module 'next-auth' {
 declare module "next-auth/jwt"{
     interface JWT {
         id?:string,
-        isVerified?:Boolean,
+        isVerified?:boolean,
         isAcceptingMessages?:boolean,
         username?:string
     }
