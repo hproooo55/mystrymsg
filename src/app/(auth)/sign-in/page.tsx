@@ -1,6 +1,6 @@
 'use client'
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import * as z from 'zod'
 import { useToast } from '@/hooks/use-toast'
 import { useRouter } from 'next/navigation'
@@ -16,7 +16,7 @@ import { signIn } from 'next-auth/react'
 
 
 
-const page = () => {
+const Page = () => {
   
   const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -111,4 +111,4 @@ const form = useForm<z.infer<typeof signInSchema>>({
   )
 }
 
-export default page
+export default Page

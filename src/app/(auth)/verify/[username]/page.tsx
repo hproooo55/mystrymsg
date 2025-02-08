@@ -10,11 +10,10 @@ import axios, { AxiosError } from 'axios'
 import { ApiResponse } from '@/types/ApiResponse'
 import { FormControl, Form, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Button } from '@/components/ui/button'
-import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from '@/components/ui/input-otp'
+import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/components/ui/input-otp'
 import { useDebounceCallback } from 'usehooks-ts'
 
 const VerifyAccount = () => {
-  const router = useRouter()
   const params = useParams<{username:string}>()  
   const {toast} = useToast()
   const [otp, setotp] = useState('')
@@ -24,7 +23,7 @@ const VerifyAccount = () => {
       
     }
 )
-const onSubmit = async(data: z.infer<typeof verifySchema>)=>{
+const onSubmit = async()=>{
     try {
         console.log(otp)
         const response = await axios.post(`/api/verify-code`, {

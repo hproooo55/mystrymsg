@@ -3,7 +3,13 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import bcrypt from 'bcryptjs';
 import dbConnect from '@/lib/dbConnect';
 import UserModel from '@/model/user.model';
+import { User } from 'next-auth';
 
+
+// type T = {
+//   email: string;
+//   password: string;
+// };
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
@@ -13,7 +19,7 @@ export const authOptions: NextAuthOptions = {
         email: { label: 'Email', type: 'text' },
         password: { label: 'Password', type: 'password' },
       },
-      async authorize(credentials: Record<"email" | "password", string> | undefined): Promise<any> {
+      async authorize(credentials: Record<"email" | "password", string> | undefined): Promise<User | null> {
         await dbConnect();
         try {
           const user = await UserModel.findOne({
@@ -36,7 +42,15 @@ export const authOptions: NextAuthOptions = {
             user.password
           );
           if (isPasswordCorrect) {
-            return user;
+            return {
+              id: user._id.toString(),
+              name: user.name,
+              email: user.email,
+              image: user.image,
+              isVerified: user.isVerified,
+              isAcceptingMessages: user.isAcceptingMessages,
+              username: user.username,
+            };
           } else {
             throw new Error('Incorrect password');
           }

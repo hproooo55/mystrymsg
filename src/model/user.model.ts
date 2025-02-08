@@ -19,13 +19,25 @@ const MessageSchema:Schema<Message> = new Schema({
 }, 
 )
 
+
+export interface User extends Document {
+  email: string;
+  password: string;
+  isVerified: boolean;
+  isAcceptingMessages: boolean;
+  username: string;
+}
+
 export interface User extends Document{
+    _id:string
     username:string,
     email:string,
     password:string,
     verifyCode:string,
     verifyCodeExpiry:Date,
-    isVerified:boolean
+    image?: string;
+    name?: string; // Add the name property
+    isVerified:boolean,
     isAcceptingMessage:boolean,
     messages:Message[]
 }
