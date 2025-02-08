@@ -4,8 +4,8 @@ import { getServerSession } from "next-auth";
 import { User } from "next-auth";
 import { authOptions } from "../../auth/[...nextauth]/options";
 
-export async function POST(request: Request, { params }: { params: { messageid: string } }) {
-  const messageid = params.messageid;
+export async function POST(_: Request, context: { params: { messageid: string } }) {
+  const messageid = context.params.messageid;
   await dbConnect();
   const session = await getServerSession(authOptions);
   const user: User = session?.user as User;
