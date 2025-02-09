@@ -1,5 +1,4 @@
 'use client';
-
 import MessageCard from '@/components/MessageCard';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -144,6 +143,7 @@ function UserDashboard() {
             type="text"
             value={profileUrl}
             className="border-2 rounded-lg outline-none text-black bg-white w-full p-2 mr-2"
+            readOnly
           />
           <Button onClick={copyToClipboard}>Copy</Button>
         </div>
@@ -177,7 +177,6 @@ function UserDashboard() {
         )}
       </Button>
       <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-5">
-        
         {messages.length > 0 ? (
           messages.map((message) => (
             <MessageCard
