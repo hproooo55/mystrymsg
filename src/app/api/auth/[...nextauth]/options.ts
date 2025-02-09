@@ -24,7 +24,7 @@ export const authOptions: NextAuthOptions = {
         identifier: { label: 'Email', type: 'text' },
         password: { label: 'Password', type: 'password' },
       },
-      async authorize(credentials: Record<"identifier" | "password", string> | undefined): Promise<any | null> {
+      async authorize(credentials: Record<"identifier" | "password", string> | undefined): Promise<User | null> {
         await dbConnect();
         try {
           const user = await UserModel.findOne({
@@ -48,7 +48,7 @@ export const authOptions: NextAuthOptions = {
           );
           if (isPasswordCorrect) {
             return {
-              _id: user._id.toString(),
+              id: user._id.toString() as string,
               name: user.name,
               email: user.email,
               image: user.image,
@@ -68,7 +68,7 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token._id = user._id?.toString(); // Convert ObjectId to string
+        token._id = user.id?.toString(); // Convert ObjectId to string
         token.isVerified = user.isVerified;
         token.isAcceptingMessages = user.isAcceptingMessages;
         token.username = user.username;
