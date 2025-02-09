@@ -72,3 +72,9 @@ body {
     @apply bg-background text-foreground;
   }
 }
+/* *:-webkit-autofill,
+*:-webkit-autofill:hover, 
+*:-webkit-autofill:focus, 
+*:-webkit-autofill:active{
+  -webkit-text-fill-color: white;
+ } */

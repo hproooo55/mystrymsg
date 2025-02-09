@@ -3,29 +3,34 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import bcrypt from 'bcryptjs';
 import dbConnect from '@/lib/dbConnect';
 import UserModel from '@/model/user.model';
-import { User } from 'next-auth';
 
+// Define the type for the user object
+type User = {
+  id: string;
+  name?: string | null;
+  email?: string | null;
+  image?: string | null;
+  isVerified: boolean;
+  isAcceptingMessages: boolean;
+  username: string;
+};
 
-// type T = {
-//   email: string;
-//   password: string;
-// };
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       id: 'credentials',
       name: 'Credentials',
       credentials: {
-        email: { label: 'Email', type: 'text' },
+        identifier: { label: 'Email', type: 'text' },
         password: { label: 'Password', type: 'password' },
       },
-      async authorize(credentials: Record<"email" | "password", string> | undefined): Promise<User | null> {
+      async authorize(credentials: Record<"identifier" | "password", string> | undefined): Promise<any | null> {
         await dbConnect();
         try {
           const user = await UserModel.findOne({
             $or: [
-              { email: credentials?.email },
-              { username: credentials?.email },
+              { email: credentials?.identifier },
+              { username: credentials?.identifier },
             ],
           });
           if (!user) {
@@ -43,7 +48,7 @@ export const authOptions: NextAuthOptions = {
           );
           if (isPasswordCorrect) {
             return {
-              id: user._id.toString(),
+              _id: user._id.toString(),
               name: user.name,
               email: user.email,
               image: user.image,

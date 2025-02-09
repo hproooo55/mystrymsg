@@ -93,7 +93,7 @@ const Page = () => {
             <FormItem>
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input  placeholder="Username" {...field} onChange={(e)=>{
+                <Input className=''  placeholder="Username" {...field} onChange={(e)=>{
                   field.onChange(e)
                   debounced(e.target.value)
                 }}/>

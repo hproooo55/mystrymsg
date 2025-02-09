@@ -25,7 +25,6 @@ const VerifyAccount = () => {
 )
 const onSubmit = async()=>{
     try {
-        console.log(otp)
         const response = await axios.post(`/api/verify-code`, {
             username: params.username,
             code: otp

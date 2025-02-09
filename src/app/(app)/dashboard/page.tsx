@@ -143,8 +143,7 @@ function UserDashboard() {
           <input
             type="text"
             value={profileUrl}
-            disabled
-            className="input input-bordered w-full p-2 mr-2"
+            className="border-2 rounded-lg outline-none text-black bg-white w-full p-2 mr-2"
           />
           <Button onClick={copyToClipboard}>Copy</Button>
         </div>
@@ -177,7 +176,7 @@ function UserDashboard() {
           <RefreshCcw className="h-4 w-4" />
         )}
       </Button>
-      <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-5">
         
         {messages.length > 0 ? (
           messages.map((message) => (

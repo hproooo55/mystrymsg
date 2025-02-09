@@ -45,6 +45,7 @@ const form = useForm<z.infer<typeof signInSchema>>({
         description: "Incorrect Username or Password",
         variant: 'destructive'
       })
+      
       setIsSubmitting(false)
     }
     if(response?.url){
@@ -69,7 +70,7 @@ const form = useForm<z.infer<typeof signInSchema>>({
             <FormItem>
               <FormLabel>Email/Username</FormLabel>
               <FormControl>
-                <Input type='email' placeholder="Email/Username" {...field} />
+                <Input type='email' className='bg-white text-black' placeholder="Email/Username" {...field} />
               </FormControl>
               <FormDescription className='text-xs'>
                 Enter Your Username or Email
@@ -102,6 +103,17 @@ const form = useForm<z.infer<typeof signInSchema>>({
           </>
          
         ): ('Sign In')
+      } 
+        </Button>
+        <p className=' self-center '>Dont have an account?</p>
+        <Button variant={'ghost'} className='bg-gray-50 hover:bg-gray-100' onClick={()=>{document.location.href='/sign-up'}} disabled={isSubmitting}>
+          {
+            isSubmitting? (
+          <>
+          <Loader2 className='mr-2 h-4 w-4 animate-spin'/>
+          </>
+         
+        ): ('Sign Up')
       } 
         </Button>
       </form>

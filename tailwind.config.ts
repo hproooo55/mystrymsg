@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import daisyui from "daisyui"
 
 export default {
     darkMode: ["class"],
@@ -67,5 +68,8 @@ export default {
 		  },
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+	daisyui,
+	require("tailwindcss-animate")
+  ],
 } satisfies Config;

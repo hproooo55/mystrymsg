@@ -42,13 +42,19 @@ const MessageCard = ({message, onMessageDelete}:MessageCardProps) => {
     onMessageDelete(message._id as string)
   }
   return (
+    <>
     <Card>
-      <CardHeader>
-        <CardTitle>{}</CardTitle>
+      {/* <CardHeader> */}
+      {/* </CardHeader> */}
+      <CardContent className='mt-6'>
+        <p>{message.content}</p>
+      </CardContent>
+      <CardFooter className='flex justify-between'>
+        <p>{moment(message.createdAt).format("DD/MM/YYYY")}</p>
         <AlertDialog>
           <AlertDialogTrigger>
-            <Button variant={'destructive'}>
-              Open
+          <Button variant={'destructive'}>
+              Delete
             </Button>
             </AlertDialogTrigger>
           <AlertDialogContent>
@@ -67,15 +73,10 @@ const MessageCard = ({message, onMessageDelete}:MessageCardProps) => {
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
-        <CardDescription></CardDescription>
-      </CardHeader>
-      <CardContent>
-        <p>{message.content}</p>
-      </CardContent>
-      <CardFooter>
-        <p>{moment(message.createdAt).format("DD/MM/YYYY")}</p>
+        
       </CardFooter>
     </Card>
+    </>
 
   )
 }

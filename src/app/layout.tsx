@@ -32,10 +32,14 @@ export default function RootLayout({
       
       <AuthProvider>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased `}
       >
+        <div className="flex flex-col overflow-x-hidden">
         <Navbar/>
+        <div className="mt-10">
         {children}
+        </div>
+        </div>
         <Toaster />
 
       </body>

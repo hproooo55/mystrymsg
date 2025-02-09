@@ -15,7 +15,6 @@ export async function POST(request: Request) {
       { status: 401 }
     );
   }
-  console.log(user)
 
   const userId = user._id;
   const { acceptMessages } = await request.json();
