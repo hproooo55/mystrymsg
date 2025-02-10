@@ -47,7 +47,7 @@ const MessageCard = ({message, onMessageDelete}:MessageCardProps) => {
         <p>{message.content}</p>
       </CardContent>
       <CardFooter className='flex justify-between'>
-        <p>{moment(message.createdAt).format("DD/MM/YYYY")}</p>
+        <p className='text-gray-400 font-medium'>{moment(message.createdAt).calendar()}</p>
         <AlertDialog>
           <AlertDialogTrigger>
           <Button variant={'destructive'}>

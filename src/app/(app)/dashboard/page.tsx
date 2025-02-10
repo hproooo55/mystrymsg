@@ -145,7 +145,7 @@ function UserDashboard() {
             className="border-2 rounded-lg outline-none text-black bg-white w-full p-2 mr-2"
             readOnly
           />
-          <Button onClick={copyToClipboard}>Copy</Button>
+          <Button onClick={copyToClipboard} className='px-5 h-10'>Copy</Button>
         </div>
       </div>
 

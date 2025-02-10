@@ -18,7 +18,7 @@ const Navbar = () => {
                     
                     <>
                     <span>
-                    <a href="#" className=' text-black text-center'>Welcome, {user.username || user.email}</a>
+                    <a href="#" className=' text-black text-center ml-3 max-[412px]:ml-8'>Welcome, <span className='text-green-600 text-transparent bg-clip-text tracking-wide font-extrabold relative bg-gradient-to-r from-green-400 to-sky-500/50 max-[412px]:ml-6 '>{user.username || user.email}</span></a>
                     </span>
                     <Button onClick={()=> signOut()}>Logout</Button>
             </>

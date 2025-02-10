@@ -1,6 +1,7 @@
 import { resend } from "@/lib/resend";
 import VerificationEmail from "../../emails/VerificationEmail";
 import { ApiResponse } from "@/types/ApiResponse";
+import nodemailer from 'nodemailer'
 
 
 export async function sendVerificationEmail(
@@ -9,12 +10,22 @@ export async function sendVerificationEmail(
     verifyCode:string
 ): Promise<ApiResponse>{
     try{
-            await resend.emails.send({
-              from: 'Acme <onboarding@resend.dev>',
+            const transporter = nodemailer.createTransport({
+                host: "smtp.gmail.com",
+                port: 465,
+                secure: true,
+                auth: {
+                    user: process.env.SMTP_USER,
+                    pass: process.env.SMTP_PASS,
+                },
+            });
+
+            const info = transporter.sendMail({
+            from: process.env.SMTP_USER,
               to: email,
               subject: 'Mystery Message Verification Code',
-              react: VerificationEmail({ username, otp: verifyCode }),
-            });
+              html: VerificationEmail({ username, otp: verifyCode }),
+            })
 
         return {success:true, message:"Verification email sent successfully"}
     }catch(emailError){

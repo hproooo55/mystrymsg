@@ -28,13 +28,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {  
   return (
-    <html lang="en">
+    <html lang="en" className="">
       
       <AuthProvider>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased `}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased  bg-white`}
       >
-        <div className="flex flex-col overflow-x-hidden">
+        <div className="flex flex-col overflow-x-hidden relative">
         <Navbar/>
         <div className="mt-10">
         {children}
