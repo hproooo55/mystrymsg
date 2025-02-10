@@ -1,4 +1,3 @@
-import { resend } from "@/lib/resend";
 import VerificationEmail from "../../emails/VerificationEmail";
 import { ApiResponse } from "@/types/ApiResponse";
 import nodemailer from 'nodemailer'
@@ -20,7 +19,7 @@ export async function sendVerificationEmail(
                 },
             });
 
-            const info = transporter.sendMail({
+            transporter.sendMail({
             from: process.env.SMTP_USER,
               to: email,
               subject: 'Mystery Message Verification Code',
