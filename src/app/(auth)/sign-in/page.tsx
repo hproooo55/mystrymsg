@@ -70,7 +70,7 @@ const form = useForm<z.infer<typeof signInSchema>>({
             <FormItem>
               <FormLabel>Email/Username</FormLabel>
               <FormControl>
-                <Input type='email' className='bg-white text-black' placeholder="Email/Username" {...field} />
+                <Input type='text' className='bg-white text-black' placeholder="Email/Username" {...field} />
               </FormControl>
               <FormDescription className='text-xs'>
                 Enter Your Username or Email
