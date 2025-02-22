@@ -21,7 +21,7 @@ export async function POST() {
         'Authorization': `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        model: 'deepseek-v3',
+        model: 'Meta-Llama-3.3-70B-Instruct-Turbo',
         messages: [
           { "role": "user", "content": prompt }
         ],
